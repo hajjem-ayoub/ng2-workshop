@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: 'weekly-menu.component.html'
 })
 export class WeeklyMenuComponent implements OnInit {
+    title = "Weekly Menu";
+
+    private daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.recipes = this.recipes.map((r, i) => {
+                (<any>r).dayOfWeek = this.daysOfWeek[i % this.daysOfWeek.length];
+                return r;
+            });
+    }
 
     recipes = [{
     "recipeId": 1,
