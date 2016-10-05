@@ -2,7 +2,7 @@
 
     <h2>{{title}}</h2>
 
-    <div class="box" *ngFor="let recipe of recipes | async | slice:0:6; let odd = odd; let even = even"> 
+    <div class="box" *ngFor="let recipe of recipes | slice:0:6; let odd = odd; let even = even"> 
     <a href="#/recipe/{{recipe.recipeId}}">
         <div [ngClass]="{'box-content': true, 'float-right': even, 'float-left': odd}">
         <h2>{{recipe.dayOfWeek}}</h2>

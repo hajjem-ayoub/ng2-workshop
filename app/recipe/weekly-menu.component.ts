@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IRecipe, RecipeService } from './recipe.service';
-import { Observable }   from 'rxjs/Rx';
 
 @Component({
     moduleId: module.id,
@@ -9,14 +8,18 @@ import { Observable }   from 'rxjs/Rx';
 })
 export class WeeklyMenuComponent implements OnInit {
     title = "Weekly Menu";
-    recipes: Observable<IRecipe[]>;
+    recipes: IRecipe[];
 
     private daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     
     constructor(private _svc: RecipeService) { }
 
     ngOnInit() { 
-        this.recipes = this._svc.getRecipes();
+        this._svc.getRecipes().subscribe(recipes => 
+                this.recipes = recipes.map((r, i) => {
+                    r.dayOfWeek = this.daysOfWeek[i % this.daysOfWeek.length];
+                    return r;
+                }));
     }
 
 }
