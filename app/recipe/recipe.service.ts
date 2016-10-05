@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http} from '@angular/http';
+import { Observable }   from 'rxjs/Rx';
 
 export interface IRecipe {
     recipeId: number;
@@ -17,8 +18,8 @@ export class RecipeService {
 
     constructor(private _http: Http) { }
 
-    getRecipes(): Promise<IRecipe[]> {
-        return this._http.get('/Artifacts/data/recipies.json')
-                    .toPromise().then(r => r.json() as IRecipe[]);
+    getRecipes(): Observable<IRecipe[]> {
+        return this._http.get('/Artifacts/data/recipies.json').
+                    map(r => r.json() as IRecipe[]);
     }
 }
