@@ -3,13 +3,13 @@
     <h2>{{title}}</h2>
 
     <div class="box" *ngFor="let recipe of recipes | slice:0:6; let odd = odd; let even = even"> 
-    <a href="#/recipe/{{recipe.recipeId}}">
+    <a [routerLink]="['/recipe', recipe.recipeId]">
         <div [ngClass]="{'box-content': true, 'float-right': even, 'float-left': odd}">
         <h2>{{recipe.dayOfWeek}}</h2>
         <h4>{{recipe.name}}</h4>
         </div>
         <div [ngClass]="{'box-image': true, 'float-left': even, 'float-right': odd}">
-        <img [src]="recipe.image | image" width="200" height="120" [alt]="recipe.name">
+        <img [src]="recipe.image | image" [alt]="recipe.name">
         </div>
     </a>
     </div>

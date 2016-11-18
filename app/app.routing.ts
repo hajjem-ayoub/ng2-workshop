@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent }     from './home.component';
 import { WeeklyMenuComponent }   from './recipe/weekly-menu.component';
 import { RecipeDetailsComponent }   from './recipe/recipe-details.component';
+import { RandomRecipeGuard } from './recipe/random-recipe.guard';
 
 const appRoutes: Routes = [
   {
@@ -24,8 +25,13 @@ const appRoutes: Routes = [
     component: WeeklyMenuComponent
   },
   {
-    path: 'random-recipe',
+    path: 'recipe/:id',
     component: RecipeDetailsComponent
+  },
+  {
+    path: 'random-recipe',
+    component: RecipeDetailsComponent, 
+    canActivate: [RandomRecipeGuard]
   }
 ];
 
