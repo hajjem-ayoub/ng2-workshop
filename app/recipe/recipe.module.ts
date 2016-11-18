@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
 import { RecipeService } from './recipe.service';
 import { ImagePipeTransform } from './image.pipe';
@@ -9,7 +10,7 @@ import { RecipeDetailsComponent }   from './recipe-details.component';
 import 'rxjs/Rx';
 
 @NgModule({
-    imports: [BrowserModule, HttpModule],
+    imports: [BrowserModule, HttpModule, RouterModule],
     exports: [WeeklyMenuComponent],
     declarations: [WeeklyMenuComponent, RecipeDetailsComponent, ImagePipeTransform],
     providers: [RecipeService],
